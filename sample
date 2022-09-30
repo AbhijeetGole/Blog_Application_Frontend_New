@@ -1,48 +1,63 @@
-#navFont {
-  font-size: larger;
-  font-weight: 700;
-}
+<!-- Navbar Start here -->
+<nav class="navbar navbar-expand-sm sticky-top bg-white shadow p-2 mb-1 bg-body rounded">
+  <div class="container-fluid">
+    <a class="navbar-brand ms-5 fw-bold fs-2" href="#">
+      <img src="../../../assets/Images/zensar_logo.png" alt="" height="35" width="45">
+      ZenWrite
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-#navFont1 {
-  font-size: larger;
-  font-weight: 700;
-  margin-right: 70px;
-}
+    <div class="d-flex flex-row-reverse me-2">
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">
+          <li  class="nav-item" id="writeBlog">
+            <a class="nav-link" routerLink="/blogs/write" href="#" id="navFont">Write a Blog</a>
+          </li>
+          <li *ngIf="!loggedin()" class="nav-item" >
+            <a class="nav-link" routerLink="/auth/login" id="navFont1">Login</a>
+          </li>
+          <!-- <li *ngIf="loggedin()" class="nav-item" >
+            <a class="nav-link" (click)="onLogout()" >Logout</a>
+          </li> -->
+          <div *ngIf="loggedin()" ngbDropdown class="dropdown">
+            <a ngbDropdownToggle class="dropdown-toggle nav-link me-5" href="#" role="button" data-bs-toggle="dropdown" id="dropdownBasic1" aria-expanded="false">
+              Hello, User
+            </a>
 
-#writeBlog {
-  margin-right: 50px;
-}
-
-.dropdown .dropdown-toggle{
-  font-size: larger;
-  font-weight: 700;
-}
+            <ul ngbDropdownMenu class="dropdown-menu">
+              <!-- <li  ngbDropdownItem><a class="dropdown-item" href="#">
+                <i class="fas fa-tachometer-alt"></i>   View Dashboard</a></li> -->
+              <li  ngbDropdownItem><a class="dropdown-item" href="#" routerLink="profile">
+                <i class="far fa-user-circle"></i>   My Profile</a></li>
 
 
 
-.card-body {
-  margin-top: 150px;
-  margin-left: 350px;
-}
-.card-body h1 {
-  text-align: center;
-  padding-top: 10px;
-}
-.profile {
-  text-align: center;
-  font-size: 100px;
-}
-.info{
-    /* margin-left: 300px; */
-    text-align: center;
-}
-.info-list{
-  font-size: large;
-  font-weight: 600;
-  padding-bottom: 15px;
-}
-#name{
-  font-weight: 400;
-  /* margin-left: 30px; */
-}
+              <li  ngbDropdownItem><a class="dropdown-item" href="#" (click)="onLogout()">
+                <i class="fas fa-sign-out-alt"></i>   Logout</a></li>
+            </ul>
+          </div>
+        </ul>
+      </div>
+    </div>
 
+  </div>
+</nav>
+
+<!-- Navbar End here -->
+
+<!-- <div class="container-fluid" *ngIf="showCard">
+  <div class="card-body w-50 shadow bg-body rounded">
+    <h1>Profile</h1>
+    <div class="profile">
+      <i class="fa-solid fa-user"></i>
+    </div>
+    <div class="info">
+      <div class="info-list">First Name: <span id="name">Aman</span></div>
+      <div class="info-list">Last Name: <span id="name">Gupta</span></div>
+      <div class="info-list">Username: <span id="name">aman123</span></div>
+      <div class="info-list">Email: <span id="name">amanG@gmail.com</span></div>
+    </div>
+  </div>
+</div> -->
