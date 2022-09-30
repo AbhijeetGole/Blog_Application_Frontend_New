@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BlogserviceService } from '../service/blogservice.service';
-import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons'
+import { faEllipsisVertical, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-comment',
@@ -16,7 +16,10 @@ export class CommentComponent implements OnInit {
   blogId : string = '';
   commentId: string='';
   commentForm: FormGroup;
-  faEllipsisVertical = faEllipsisVertical
+  faEllipsisVertical = faEllipsisVertical;
+  faPaperPlane = faPaperPlane;
+  singleComment: any;
+  edit=false;
 
   constructor(private bulider:FormBuilder, private blogService:BlogserviceService, 
               private activatedRoute: ActivatedRoute,
@@ -36,6 +39,8 @@ export class CommentComponent implements OnInit {
       this.listComments = data;
       console.log(data)
     })
+
+   
   }
 
   saveComment(){
@@ -68,5 +73,30 @@ export class CommentComponent implements OnInit {
         })
       }
     }
+
+  editComment(id:any, comment_id:any){
+    // this.comment = this.commentForm.value
+    this.blogService.getCommentById(id , comment_id).subscribe(data=>{
+      this.singleComment = data;
+      this.edit=true;
+    })
+  }
+
+  updateComment(id:any, comment_id:any){
+    this.comment = this.commentForm.value;
+    console.log("updated works")
+    this.edit=true;
+    this.blogService.updateComment(id, comment_id, this.comment).subscribe((result)=>{
+      console.log("updated", result);
+      if (result) {
+        this.blogService.getallComments(this.blogId).subscribe(data=>{
+          this.listComments = data;
+          console.log(data)
+        })
+      }else {
+        alert('Some thingh went wrong!');
+      } 
+    })
+  }
 
 }

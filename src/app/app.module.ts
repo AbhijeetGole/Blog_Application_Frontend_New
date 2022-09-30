@@ -8,10 +8,13 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { BlogModule } from './blog/blog.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DateAgoPipe } from './pipes/date-ago.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DateAgoPipe
   ],
   imports: [
     BrowserModule,
