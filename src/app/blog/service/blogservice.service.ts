@@ -35,6 +35,14 @@ export class BlogserviceService {
     return this.http.get(this.BASE_URL + id + '/commentsGet', this.httpOptions)
   }
 
+  getCommentById(id:string, comment_id:string){
+    return this.http.get(this.BASE_URL + id + '/comments/' + comment_id, this.httpOptions )
+  }
+
+  updateComment(id:string, comment_id:string, comment:any){
+    return this.http.put(this.BASE_URL + id + '/comments/' + comment_id, comment, this.httpOptions)
+  }
+
   deleteComment(id:string, comment_id:string){
     // console.log(this.BASE_URL + id + '/comments/' + comment_id)
     return this.http.delete(this.BASE_URL + id + '/comments/' + comment_id, this.httpOptions)
