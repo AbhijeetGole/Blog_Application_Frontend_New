@@ -26,6 +26,15 @@ export class BlogserviceService {
   getBlogbyId(id:string){
     return this.http.get(this.BASE_URL + id)
   }
+  deleteblog(id:any)
+  {
+    return this.http.delete(this.BASE_URL + id, this.httpOptions)
+  }
+
+  editblog(id:any,blog:any)
+  {
+    return this.http.put(this.BASE_URL+id,blog,this.httpOptions)
+  }
 
   postComment(id:string, comment:any){
     return this.http.post(this.BASE_URL + id + '/commentsPost', comment, this.httpOptions)

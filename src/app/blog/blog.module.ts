@@ -7,7 +7,8 @@ import { SingleblogComponent } from './singleblog/singleblog.component';
 import { CreateblogComponent } from './createblog/createblog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommentComponent } from './comment/comment.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { EditBlogComponent } from './edit-blog/edit-blog.component'
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
     ListblogsComponent,
     SingleblogComponent,
     CreateblogComponent,
-    CommentComponent
+    CommentComponent,
+    EditBlogComponent
   ],
   imports: [
     CommonModule,
