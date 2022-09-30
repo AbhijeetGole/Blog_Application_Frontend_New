@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
@@ -39,4 +39,56 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+<section class="h-100 bgimg">
+    <header class="py-3 mb-4">
+        <div class="container d-flex flex-wrap justify-content-center">
+          <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfxOmhBy9N06InPK-TwMk9abz-EPgzF6GmLrG4OfUeqrLem5_uFIOx2Fpesfjrw94ETA&usqp=CAU" alt="logo" width="150">
+          </a>
+        </div>
+      </header> 
+    <div class="container h-100">
+        <div class="row justify-content-sm-center h-100">
+            <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+                <div class="card shadow-lg">
+                    <div class="card-body p-5">
+                        <h1 class="fs-4 card-title fw-bold mb-4 text_heading">User Login/Admin Login</h1>
+                        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" method="POST" class="needs-validation" novalidate="" autocomplete="off">
+                            <div class="mb-3">
+                                <label class="mb-2 text-muted col-form-label-sm" for="email">Email<span class="error">*</span></label>
+                                <input id="email" type="email" class="form-control form-control-sm" formControlName="email" value="" placeholder="Enter Email" required autofocus>
+                                <small class="error" *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)">
+                                    <div *ngIf="f.email.hasError('required')">This field is required.</div>
+                                </small>
+                            </div>
+                            <div class="mb-3">
+                                <div class="mb-2 w-100">
+                                    <label class="text-muted col-form-label-sm" for="password">Password<span class="error">*</span></label>
+                                </div>
+                                <input id="password" type="password" class="form-control form-control-sm" formControlName="password" placeholder="Enter Password" required>
+                                <small class="error" *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)">
+                                    <div *ngIf="f.password.hasError('required')">This field is required.</div>
+                                </small>
+                            </div>
+
+                            <div class="d-flex align-items-center">
+                                <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary btn-sm ms-auto">
+                                    <a class="link-nav" href="index.html"> LOGIN</a>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer py-3 border-0">
+                        <div class="text-center">
+                            New user ?  <a routerLink="/auth/newuser" target="_parent" class="text-dark">Create One</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+</section>
