@@ -1,63 +1,50 @@
-<!-- Navbar Start here -->
-<nav class="navbar navbar-expand-sm sticky-top bg-white shadow p-2 mb-1 bg-body rounded">
-  <div class="container-fluid">
-    <a class="navbar-brand ms-5 fw-bold fs-2" href="#">
-      <img src="../../../assets/Images/zensar_logo.png" alt="" height="35" width="45">
-      ZenWrite
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+.banner{
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 
-    <div class="d-flex flex-row-reverse me-2">
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">
-          <li  class="nav-item" id="writeBlog">
-            <a class="nav-link" routerLink="/blogs/write" href="#" id="navFont">Write a Blog</a>
-          </li>
-          <li *ngIf="!loggedin()" class="nav-item" >
-            <a class="nav-link" routerLink="/auth/login" id="navFont1">Login</a>
-          </li>
-          <!-- <li *ngIf="loggedin()" class="nav-item" >
-            <a class="nav-link" (click)="onLogout()" >Logout</a>
-          </li> -->
-          <div *ngIf="loggedin()" ngbDropdown class="dropdown">
-            <a ngbDropdownToggle class="dropdown-toggle nav-link me-5" href="#" role="button" data-bs-toggle="dropdown" id="dropdownBasic1" aria-expanded="false">
-              Hello, User
-            </a>
+ }
 
-            <ul ngbDropdownMenu class="dropdown-menu">
-              <!-- <li  ngbDropdownItem><a class="dropdown-item" href="#">
-                <i class="fas fa-tachometer-alt"></i>   View Dashboard</a></li> -->
-              <li  ngbDropdownItem><a class="dropdown-item" href="#" routerLink="profile">
-                <i class="far fa-user-circle"></i>   My Profile</a></li>
+ .banner .b-img{
+  background-image: url(../../../assets/Images/banner1.jpg);
+  /* background-repeat: no-repeat; */
+  background-size: cover;
 
+  width: 1722px;
+  height: 450px;
+}
 
+.welcome{
+  position: absolute;
+  margin-top: 100px;
+  margin-left: 20px;
+  font-size: 150;
+  font-weight: 800;
 
-              <li  ngbDropdownItem><a class="dropdown-item" href="#" (click)="onLogout()">
-                <i class="fas fa-sign-out-alt"></i>   Logout</a></li>
-            </ul>
-          </div>
-        </ul>
-      </div>
-    </div>
+}
 
-  </div>
-</nav>
+.intro{
+  position: absolute;
+  margin-top: 160px;
+  margin-right: 30px;
+  margin-left: 20px;
+  font-size: 100;
+  font-weight: 500;
+}
 
-<!-- Navbar End here -->
+.btns{
+  position: absolute;
+  /* margin-left: 4vw; */
+  margin-top: 275px;
+  /* width: 40vw; */
+}
+.bt{
+  margin-right: 2vw;
+  font-size: larger;
 
-<!-- <div class="container-fluid" *ngIf="showCard">
-  <div class="card-body w-50 shadow bg-body rounded">
-    <h1>Profile</h1>
-    <div class="profile">
-      <i class="fa-solid fa-user"></i>
-    </div>
-    <div class="info">
-      <div class="info-list">First Name: <span id="name">Aman</span></div>
-      <div class="info-list">Last Name: <span id="name">Gupta</span></div>
-      <div class="info-list">Username: <span id="name">aman123</span></div>
-      <div class="info-list">Email: <span id="name">amanG@gmail.com</span></div>
-    </div>
-  </div>
-</div> -->
+}
+
+.btns button:hover {
+  background-color: rgb(7, 15, 14);
+}
