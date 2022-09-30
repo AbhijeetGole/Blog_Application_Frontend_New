@@ -1,50 +1,16 @@
-.banner{
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  position: relative;
+  <div class="banner bg-img mb-5">
+      <div class="text d-flex flex-row-reverse me-5">
+        <h1 class="welcome">Welcome to ZenWrite</h1>
+      <h3 class="intro">
+        Get access to insights, updates, <br> and resources
+      </h3>
+      <div class="btns">
+        <button type="button" class="btn btn-secondary bt"  (click)="gotopage('blogs')">Read Blogs</button>
+       <button type="button" class="btn btn-secondary bt" (click)="gotopage('signup')" >Sign Up</button>
+     </div>
+      </div>
+      <div class="b-img bg-img img-fluid ">
 
- }
+      </div>
 
- .banner .b-img{
-  background-image: url(../../../assets/Images/banner1.jpg);
-  /* background-repeat: no-repeat; */
-  background-size: cover;
-
-  width: 1722px;
-  height: 450px;
-}
-
-.welcome{
-  position: absolute;
-  margin-top: 100px;
-  margin-left: 20px;
-  font-size: 150;
-  font-weight: 800;
-
-}
-
-.intro{
-  position: absolute;
-  margin-top: 160px;
-  margin-right: 30px;
-  margin-left: 20px;
-  font-size: 100;
-  font-weight: 500;
-}
-
-.btns{
-  position: absolute;
-  /* margin-left: 4vw; */
-  margin-top: 275px;
-  /* width: 40vw; */
-}
-.bt{
-  margin-right: 2vw;
-  font-size: larger;
-
-}
-
-.btns button:hover {
-  background-color: rgb(7, 15, 14);
-}
+  </div>
