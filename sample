@@ -1,8 +1,46 @@
-<app-navbar></app-navbar>
-<app-banner></app-banner>
- <!-- <app-recentblog></app-recentblog> -->
-<!-- <app-nxt-banner></app-nxt-banner> -->
-<app-footer></app-footer>
-<!-- <app-profile></app-profile> -->
-
-
+<div class="main">
+  <h2>Profile</h2>
+  <div class="card">
+      <div class="card-body">
+          <!-- <i class="fa fa-pen fa-xs edit"></i> -->
+          <table>
+              <tbody>
+                  <tr>
+                      <td>First Name</td>
+                      <td>:</td>
+                      <td>Aman</td>
+                  </tr>
+                  <tr>
+                    <td>Last Name</td>
+                    <td>:</td>
+                    <td>Gupta</td>
+                </tr>
+                  <tr>
+                      <td>Email</td>
+                      <td>:</td>
+                      <td>amanG@gmail.com</td>
+                  </tr>
+                  <tr>
+                      <td>Username</td>
+                      <td>:</td>
+                      <td>amanGupta123</td>
+                  </tr>
+                  <!-- <tr>
+                      <td>Hobbies</td>
+                      <td>:</td>
+                      <td>Diving, Reading Book</td>
+                  </tr>
+                  <tr>
+                      <td>Job</td>
+                      <td>:</td>
+                      <td>Web Developer</td>
+                  </tr>
+                  <tr>
+                      <td>Skill</td>
+                      <td>:</td>
+                      <td>PHP, HTML, CSS, Java</td>
+                  </tr> -->
+              </tbody>
+          </table>
+      </div>
+  </div>
