@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class BlogserviceService {
-  BASE_URL : string  = "http://localhost:6001/technical-blogging/blog/"
+  BASE_URL : string  = "http://localhost:6002/technical-blogging/blog/"
 
   constructor(private http: HttpClient) { }
 

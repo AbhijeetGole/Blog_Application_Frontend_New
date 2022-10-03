@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BlogserviceService } from '../service/blogservice.service';
-import { faEllipsisVertical, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { faEllipsisVertical, faPaperPlane, faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-comment',
@@ -18,6 +18,8 @@ export class CommentComponent implements OnInit {
   commentForm: FormGroup;
   faEllipsisVertical = faEllipsisVertical;
   faPaperPlane = faPaperPlane;
+  faTrash = faTrash;
+  faPenToSquare = faPenToSquare;
   singleComment: any;
   edit=false;
 
