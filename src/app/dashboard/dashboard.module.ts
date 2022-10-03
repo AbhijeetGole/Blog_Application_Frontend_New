@@ -8,6 +8,7 @@ import { RecentblogComponent } from './recentblog/recentblog.component';
 import { FooterComponent } from './footer/footer.component';
 import { BannerComponent } from './banner/banner.component';
 import { NxtBannerComponent } from './nxt-banner/nxt-banner.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { NxtBannerComponent } from './nxt-banner/nxt-banner.component';
     FooterComponent,
     BannerComponent,
     NxtBannerComponent,
+    ProfileComponent,
   ],
 
   imports: [

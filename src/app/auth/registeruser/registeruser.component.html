@@ -1,128 +1,99 @@
-<!-- <app-navbar></app-navbar> -->
-<div class="container">
-    <div class="row justify-content-center">
-        <!-- <div class="navbar sticky-top bg-white shadow p-2 mb-1 bg-body rounded"> -->
-            <a class="navbar-brand fw-bold fs-2 text-center" href="#">
-                <img src="../../../assets/Images/zensar_logo.png" alt="" height="35" width="45">
-                ZenWrite
-              </a>
-        <!-- </div> -->
-        <div class="col-md-6">
-            <h1>Sign Up</h1>
-            <hr />
-            <div class="signup-form">
-                <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-                    <div class="form-group">
-                        <div class="form-row">
-                            <div class="col-md-3">
-                                <label>First Name <span class="error">*</span></label>
-                            </div>
-                            <div class="col-md-9">
-                                <input formControlName="firstname" placeholder="First Name" class="form-control" />
-                                <small class="error" *ngIf="f.firstname.invalid && (f.firstname.dirty || f.firstname.touched)">
-                                    <div *ngIf="f.firstname.hasError('required')">This field is required.</div>
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-row">
-                            <div class="col-md-3">
-                                <label>Last Name</label>
-                            </div>
-                            <div class="col-md-9">
-                                <input formControlName="lastname" placeholder="Last Name" class="form-control" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-row">
-                            <div class="col-md-3">
-                                <label>E-Mail <span class="error">*</span></label>
-                            </div>
-                            <div class="col-md-9">
-                                <input formControlName="email" placeholder="Email" class="form-control" />
-                                <small class="error" *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)">
-                                    <div *ngIf="f.email.hasError('required')">This field is required.</div>
-                                    <div *ngIf="f.email.hasError('email')">Enter valid email address.</div>
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-row">
-                            <div class="col-md-3">
-                                <label>Username <span class="error">*</span></label>
-                            </div>
-                            <div class="col-md-9">
-                                <input formControlName="username" placeholder="Username" class="form-control"  />
+<section class="h-100 bgimg">
+    <header class="py-3 mb-4">
+        <div class="container d-flex flex-wrap justify-content-center">
+          <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfxOmhBy9N06InPK-TwMk9abz-EPgzF6GmLrG4OfUeqrLem5_uFIOx2Fpesfjrw94ETA&usqp=CAU" alt="logo" width="150">
+          </a>
+        </div>
+      </header>
+    <div class="container h-100">
+        <div class="row justify-content-sm-center h-100">
+            <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+                <div class="card shadow-lg">
+                    <div class="card-body p-4">
+                        <h1 class="fs-4 card-title fw-bold mb-4 text_heading">Register User</h1>
+                        
+                          
+                        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" method="POST" class="needs-validation" novalidate="" autocomplete="off">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <fieldset>
+                                        <label class="mb-2 text-muted col-form-label-sm" for="fname"> First Name <span class="error">*</span></label>
+                                    <input id="name" type="text" class="form-control form-control-sm" formControlName="firstname" value="" required="" placeholder="Enter First Name" autofocus="on">
+                                    <small class="error" *ngIf="f.firstname.invalid && (f.firstname.dirty || f.firstname.touched)">
+                                        <div *ngIf="f.firstname.hasError('required')">This field is required.</div>
+                                    </small>
+
+                                    </fieldset>
+                                    
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="mb-2 text-muted col-form-label-sm" for="fname"> Last Name <span class="error">*</span></label>
+                                    <input id="name" type="text" class="form-control form-control-sm" formControlName="lastname" value="" required="" placeholder="Enter Last Name" autofocus="">
+                                    <small class="error" *ngIf="f.lastname.invalid && (f.lastname.dirty || f.lastname.touched)">
+                                        <div *ngIf="f.lastname.hasError('required')">This field is required.</div>
+                                    </small>
+                                </div>
+                              </div>
+                            <div class="mb-3">
+                                <label class="mb-2 text-muted col-form-label-sm" for="email">User Name <span class="error">*</span></label>
+                                <input id="User" type="text" class="form-control form-control-sm" formControlName="username" value="" placeholder="Enter User Name" required="">
                                 <small class="error" *ngIf="f.username.invalid && (f.username.dirty || f.username.touched)">
                                     <div *ngIf="f.username.hasError('required')">This field is required.</div>
-                                    <div *ngIf="f.username.hasError('pattern')">Only alphanumeric is allowed.</div>
                                 </small>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-row">
-                            <div class="col-md-3">
-                                <label>Password <span class="error">*</span></label>
+
+                            <div class="mb-3">
+                                <label class="mb-2 text-muted col-form-label-sm" for="email">Email <span class="error">*</span></label>
+                                <input id="email" type="email" class="form-control form-control-sm" formControlName="email" name="email" value="" placeholder="Enter Email" required="">
+                                <small class="error" *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)">
+                                    <div *ngIf="f.email.hasError('required')">This field is required.</div>
+                                </small>
                             </div>
-                            <div class="col-md-9">
-                                <input formControlName="password" placeholder="Password" type="password" class="form-control" />
+
+                            <div class="mb-3">
+                                <label class="mb-2 text-muted col-form-label-sm" for="password">Password <span class="error">*</span></label>
+                                <input id="password" type="password" class="form-control form-control-sm" formControlName="password" placeholder="Enter  Password" required="">
                                 <small class="error" *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)">
                                     <div *ngIf="f.password.hasError('required')">This field is required.</div>
-                                    <div *ngIf="f.password.hasError('minlength')">Password must be at least 6 characters.</div>
+                                    <div *ngIf="f.password.errors?.minlength">Password length must be 8</div>
                                 </small>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-row">
-                            <div class="col-md-3">
-                                <label>Confirm Password <span class="error">*</span></label>
-                            </div>
-                            <div class="col-md-9">
-                                <input formControlName="password2" placeholder="Confirm Password" type="password" class="form-control" />
+
+                            <div class="mb-3">
+                                <label class="mb-2 text-muted col-form-label-sm" for="password">Confirm Password <span class="error">*</span></label>
+                                <input id="password" type="password" class="form-control form-control-sm" formControlName="password2" placeholder="Enter  Password" required="">
                                 <small class="error" *ngIf="f.password2.invalid && (f.password2.dirty || f.password2.touched)">
                                     <div *ngIf="f.password2.hasError('required')">This field is required.</div>
                                 </small>
-                                <small class="error" *ngIf="signupForm.errors?.passwordmatch && (signupForm.dirty || signupForm.touched)">
+                                <small class="error" *ngIf="signupForm.errors?.matchingPasswords && (signupForm.dirty || signupForm.touched)">
                                     Password and confirm password must be same.
                                 </small>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group pt-2">
-                        <div class="form-row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-8">
-                                <div class="form-check pb-4">
-                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" formControlName="check_boxx">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                          I agree to the terms and privacy policies.
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-2"></div>
-                        </div>
-                    </div>
 
-                    <div class="col-md-8">
-                        <p class="haveAccount"> Already have an account? <a routerLink="/auth/login" class="allblogs" target="_blank">Login</a></p>
+                            <div class="mb-3">
+                                <div class="form-check pb-4">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" formControlName="check_boxx">
+                                       <label class="form-check-label" for="flexCheckDefault">
+                                             I agree to the terms and privacy policies.
+                                       </label>
+                                   </div>
+                            </div>
+
+                            <div class="align-items-center d-flex">
+                                <button type="submit" [disabled]="signupForm.invalid" type="submit" class="btn btn-primary btn-sm ms-auto">
+                                    Create Account	
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group d-flex flex-row-reverse">
-                        <div class="form-row">
-                            <div class="col-md-3 ">
-                            </div>
-                            <div class="col-md-9">
-                                <button type="submit" [disabled]="signupForm.invalid" class="btn btn-primary">Submit</button>
-                            </div>
+                    <div class="card-footer py-3 border-0">
+                        <div class="text-center">
+                            Already have an account? <a  class="text-dark" routerLink="/auth/login">Login</a>
                         </div>
                     </div>
-                </form>
-                <!-- {{signupForm.value | json}} -->
+                </div>
             </div>
         </div>
     </div>
-</div>
+</section>

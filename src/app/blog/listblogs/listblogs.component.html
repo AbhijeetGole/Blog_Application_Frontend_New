@@ -7,7 +7,7 @@
 <div class="container-fluid blog">
     <div class="row">
         <div class="col-sm-4 card_padding" *ngFor="let blog of listBlogs">
-         <a [routerLink]="['/blogs/blogtitle', blog._id]" target="_blank" class="cardlink">
+         <a [routerLink]="['/blogs/blogtitle', blog._id]" target="_self" class="cardlink">
                   <div class="card h-100">
                       <img [src]="blog.imageUrl||defaultimage" class="card-img-top" alt="...">
                       <div class="card-body">
