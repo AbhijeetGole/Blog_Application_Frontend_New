@@ -52,6 +52,7 @@ export class CommentComponent implements OnInit {
       if (data) {
         this.blogService.getallComments(this.blogId).subscribe(data=>{
           this.listComments = data;
+          this.commentForm.reset();
           console.log(data)
         })
       } else {
@@ -93,6 +94,7 @@ export class CommentComponent implements OnInit {
       if (result) {
         this.blogService.getallComments(this.blogId).subscribe(data=>{
           this.listComments = data;
+          this.commentForm.reset();
           console.log(data)
         })
       }else {

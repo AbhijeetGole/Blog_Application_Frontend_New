@@ -26,6 +26,7 @@ export class BlogserviceService {
   getBlogbyId(id:string){
     return this.http.get(this.BASE_URL + id)
   }
+  
   deleteblog(id:any)
   {
     return this.http.delete(this.BASE_URL + id, this.httpOptions)

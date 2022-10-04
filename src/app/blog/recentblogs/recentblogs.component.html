@@ -1,0 +1,46 @@
+<!-- Blog Grid Start here -->
+<div class="container-fluid blog_header">
+    <p class="fw-bold fs-2 mt-3 ms-4 me-4 border-bottom pb-3 mb-5 border-secondary">
+        Most Recent Blogs
+        <span class="d-flex flex-row-reverse text-secondary fw-semibold">
+            <a routerLink="/blog/blogs" class="allblogs" target="_self">View All blogs</a></span>
+    </p>
+</div>
+
+<div class="container-fluid pb-5" listBlogs>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="inner">
+                <a [routerLink]="['/blogs/blogtitle', listBlogs[0]._id]" target="_self" class="cardlink">
+                    <img [src]="listBlogs[0].imageUrl||defaultimage" class="img-fluid rounded mx-auto d-block pb-2"
+                        alt="Blog_1" width="814"
+                        height="457" />
+                </a>
+                <p class="fw-bolder fs-4 ps-4">
+                    {{listBlogs[0].title}}
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="inner">
+                <a [routerLink]="['/blogs/blogtitle', listBlogs[1]._id]" target="_self" class="cardlink">
+                <img [src]="listBlogs[1].imageUrl||defaultimage" class="img-fluid rounded mx-auto d-block pb-2"
+                    alt="Blog_2" width="332"
+                    height="295" />
+                </a>
+                <p class="fw-bolder fs-4 ps-5 pb-3">{{listBlogs[1].title}}</p>
+            </div>
+            <div class="inner">
+                <a [routerLink]="['/blogs/blogtitle', listBlogs[2]._id]" target="_self" class="cardlink">
+                <img [src]="listBlogs[2].imageUrl||defaultimage" class="img-fluid rounded mx-auto d-block pb-2"
+                    alt="Blog_3" width="332"
+                    height="295" />
+                </a>
+                <p class="fw-bolder fs-4 ps-5 pb-3">{{listBlogs[2].title}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Blog Grid End here -->

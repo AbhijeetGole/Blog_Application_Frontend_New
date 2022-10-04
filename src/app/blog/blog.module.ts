@@ -8,7 +8,8 @@ import { CreateblogComponent } from './createblog/createblog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommentComponent } from './comment/comment.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { EditBlogComponent } from './edit-blog/edit-blog.component'
+import { EditBlogComponent } from './edit-blog/edit-blog.component';
+import { RecentblogsComponent } from './recentblogs/recentblogs.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { EditBlogComponent } from './edit-blog/edit-blog.component'
     SingleblogComponent,
     CreateblogComponent,
     CommentComponent,
-    EditBlogComponent
+    EditBlogComponent,
+    RecentblogsComponent
   ],
   imports: [
     CommonModule,
@@ -25,6 +27,9 @@ import { EditBlogComponent } from './edit-blog/edit-blog.component'
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule
+  ],
+  exports: [
+    RecentblogsComponent
   ]
 })
 export class BlogModule { }

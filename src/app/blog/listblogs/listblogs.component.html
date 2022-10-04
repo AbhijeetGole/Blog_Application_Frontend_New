@@ -9,7 +9,8 @@
         <div class="col-sm-4 card_padding" *ngFor="let blog of listBlogs">
          <a [routerLink]="['/blogs/blogtitle', blog._id]" target="_self" class="cardlink">
                   <div class="card h-100">
-                      <img [src]="blog.imageUrl||defaultimage" class="card-img-top" alt="...">
+                      <img [src]="blog.imageUrl||defaultimage" class="card-img-top" alt="..." 
+                        width="300px" height="230px">
                       <div class="card-body">
                           <h5 class="card-title fw-bold text-dark">{{blog.title}}</h5>
                           <a [routerLink]="['/blogs/blogtitle', blog._id]" class="btn btn-primary" target="_blank">View Blog</a>
@@ -18,5 +19,5 @@
            </a>
         </div>
     </div>
- 
+</div>
    

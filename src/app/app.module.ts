@@ -10,6 +10,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { BlogModule } from './blog/blog.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
     AuthModule,
     FormsModule,
     ReactiveFormsModule,
-  
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
