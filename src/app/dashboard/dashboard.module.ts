@@ -9,7 +9,6 @@ import { FooterComponent } from './footer/footer.component';
 import { BannerComponent } from './banner/banner.component';
 import { NxtBannerComponent } from './nxt-banner/nxt-banner.component';
 import { ProfileComponent } from './profile/profile.component';
-import { RecentblogsComponent } from '../blog/recentblogs/recentblogs.component';
 import { BlogModule } from '../blog/blog.module';
 
 @NgModule({
