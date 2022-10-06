@@ -4,13 +4,13 @@ style="display: flex; flex-direction:row">
         formControlName="comment" [value]="edit?singleComment.parComment.comment:''">
     </textarea>
     <button class="btn btn-primary" type="submit" [disabled]="!commentForm.valid" style="margin-left: -52px;">
-        <fa-icon [icon]="faPaperPlane" class="icons" style=" font-size: 25px;"></fa-icon>
+        <fa-icon [icon]="faPaperPlane" class="icons" style=" font-size: 18px;"></fa-icon>
     </button>
 
 </form>
 <section class="mb-1" *ngFor="let comments of listComments">
     <div class="card bg-light" style="border: none">
-        <div class="card-body">
+        <div class="card-body d-flex justify-content-between">
             <!-- Comment with nested comments-->
             <div class="d-flex">
                 <!-- Parent comment-->
@@ -29,21 +29,14 @@ style="display: flex; flex-direction:row">
                 <!-- <div class="">
                     <fa-icon [icon]="faEllipsisVertical" class="icons" style=" font-size: 20px;"></fa-icon>
                 </div> -->
-
+            </div>
+            <div>
                 <section listComments>
-                    <fa-icon [icon]="faPenToSquare" class="icons" style=" font-size: 20px;" 
-                                (click)="editComment(blogId, comments._id)"></fa-icon>
-                    <!-- <a class="btn btn-sm btn-danger" (click)="editComment(blogId, comments._id)">
-                        edit
-                    </a> -->
-                </section>
-                <section listComments>
-                    <fa-icon [icon]="faTrash" class="icons" style=" font-size: 20px; color: #dc3545;" 
+                    <fa-icon [icon]="faTrash" class="icons" style="color: #dc3545;" 
                               (click)="deleteComment(blogId, comments._id)"></fa-icon>
-                    <!-- <a class="btn btn-sm btn-danger" (click)="deleteComment(blogId, comments._id)">
-                        Delete
-                    </a> -->
-                </section> 
+                    <fa-icon [icon]="faPenToSquare" class="icons"  
+                                (click)="editComment(blogId, comments._id)"></fa-icon>
+                </section>
             </div>
         </div>
     </div>
