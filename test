@@ -1,0 +1,13 @@
+.comment_content{
+    width: 100%;
+} 
+.icons{
+    font-size: 15px;
+    float: right;
+    cursor: pointer;
+    padding: 5px;
+}
+
+form{
+    border-radius: 50%;
+}
