@@ -1,13 +1,43 @@
-.comment_content{
-    width: 100%;
-} 
-.icons{
-    font-size: 15px;
-    float: right;
-    cursor: pointer;
-    padding: 5px;
-}
+<form class="mb-2" [formGroup]="commentForm" (ngSubmit)="edit?updateComment(blogId, singleComment.parComment._id):saveComment()" 
+style="display: flex; flex-direction:row">
+    <textarea class="form-control" rows="1" placeholder="Write a comment......"
+        formControlName="comment" [value]="edit?singleComment.parComment.comment:''">
+    </textarea>
+    <button class="btn btn-primary" type="submit" [disabled]="!commentForm.valid" style="margin-left: -52px;">
+        <fa-icon [icon]="faPaperPlane" class="icons" style=" font-size: 18px;"></fa-icon>
+    </button>
 
-form{
-    border-radius: 50%;
-}
+</form>
+<section class="mb-1" *ngFor="let comments of listComments">
+    <div class="card bg-light" style="border: none">
+        <div class="card-body d-flex justify-content-between">
+            <!-- Comment with nested comments-->
+            <div class="d-flex">
+                <!-- Parent comment-->
+                <div class="flex-shrink-0">
+                    <img class="rounded-circle" style="object-fit: fill" src="../../../assets/Images/profile3.png"
+                        alt="..." width="55px" height="55px" />
+                </div>
+                <div class="ms-3">
+                    <div class="fw-bold">
+                        {{comments.username}}
+                    </div>
+                    <div class="comment_content">
+                        {{comments.comment}}
+                    </div>
+                </div>
+                <!-- <div class="">
+                    <fa-icon [icon]="faEllipsisVertical" class="icons" style=" font-size: 20px;"></fa-icon>
+                </div> -->
+            </div>
+            <div>
+                <section listComments>
+                    <fa-icon [icon]="faPenToSquare" class="icons"  
+                                (click)="editComment(blogId, comments._id)"></fa-icon>
+                    <fa-icon [icon]="faTrash" class="icons" style="color: #dc3545;" 
+                              (click)="deleteComment(blogId, comments._id)"></fa-icon>
+                </section>
+            </div>
+        </div>
+    </div>
+</section>
