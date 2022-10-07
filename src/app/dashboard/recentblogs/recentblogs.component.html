@@ -1,13 +1,12 @@
 <!-- Blog Grid Start here -->
 <div class="container-fluid blog_header">
-    <p class="fw-bold fs-2 mt-3 ms-4 me-4 border-bottom pb-3 mb-5 border-secondary">
-        Most Recent Blogs
-        <span class="d-flex flex-row-reverse text-secondary fw-semibold">
-            <a routerLink="/blog/blogs" class="allblogs" target="_self">View All blogs</a></span>
-    </p>
+    <div class="fw-bold fs-2 mt-3 ms-4 me-4 pb-10 mb-5 border-bottom">
+      Most Recent Blogs 
+      <a routerLink="/blog/blogs" class="allblogs mt-3 target="_self>View All blogs</a>
+    </div>
 </div>
 
-<div class="container-fluid pb-5" listBlogs>
+<div class="container-fluid pb-5" *ngIf="listBlogs">
     <div class="row">
         <div class="col-md-8">
             <div class="inner">

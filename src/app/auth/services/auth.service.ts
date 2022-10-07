@@ -41,12 +41,14 @@ export class AuthService {
   doLogin(user: any) {
     localStorage.setItem('currentUser', JSON.stringify(user))
   }
+  
   getCurrentUser() {
     let crl=window.localStorage.getItem('currentUser');
     if(typeof(crl)=='object')
     return false;
     return JSON.parse(localStorage.getItem('currentUser')||'{}').token;
   }
+
   getDecodeToken(token: string) {
     return jwt_decode(token);
   }

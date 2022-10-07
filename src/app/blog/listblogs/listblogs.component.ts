@@ -18,8 +18,6 @@ export class ListblogsComponent implements OnInit {
       this.listBlogs = data
       console.log(data)
     })
- 
-    
   }
 
 }

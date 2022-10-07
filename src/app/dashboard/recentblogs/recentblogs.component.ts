@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BlogserviceService } from '../service/blogservice.service';
+import { BlogserviceService } from '../../blog/service/blogservice.service';
 
 @Component({
   selector: 'app-recentblogs',
@@ -8,14 +8,13 @@ import { BlogserviceService } from '../service/blogservice.service';
 })
 export class RecentblogsComponent implements OnInit {
 
-  listBlogs!: any;
+  listBlogs: any=false;
   constructor(private blogservice:BlogserviceService) { }
 
   defaultimage:string='../../../assets/Images/blog-1.avif';
   ngOnInit(): void {
     this.blogservice.getAllBlogs().subscribe(data=>{
       this.listBlogs = data
-      console.log(data)
     }) 
   }
 }

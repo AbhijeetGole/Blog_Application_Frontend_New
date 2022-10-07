@@ -2,6 +2,11 @@
     overflow: hidden;
     cursor: pointer;
   }
+
+  .allblogs{
+    font-size: 50%;
+    float: right;
+  }
   
   .inner img {
     transition: all 0.5s ease;

@@ -55,13 +55,13 @@ export class LoginComponent implements OnInit {
       })
       .subscribe((result) => {
         if (result) {
-        this.toast.success({detail:"Logged in Successfully",duration:2000})
+        this.toast.success({detail:"Logged in Successfully",duration:1000})
         let token = this.authService.getCurrentUser();
-        console.log(token)
+
         if(token){
           token = this.authService.getDecodeToken(token)
         }
-        console.log(token)
+        
         if (token) {
           localStorage.setItem('token', token.firstname);
           console.log('Login Successful');

@@ -52,12 +52,12 @@ export class CommentComponent implements OnInit {
     this.blogService.postComment(this.blogId,this.comment).subscribe(data=>{
       console.log(data);
       if (data) {
-        this.toast.success({detail:"Comment Added Successfully",duration:2000})
         this.blogService.getallComments(this.blogId).subscribe(data=>{
           this.listComments = data;
           this.commentForm.reset();
           console.log(data)
         })
+        this.toast.success({detail:"Comment Added Successfully",duration:2000})
       } else {
         alert('Some thingh went wrong!');
       }

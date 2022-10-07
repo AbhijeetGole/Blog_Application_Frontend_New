@@ -57,4 +57,8 @@ export class BlogserviceService {
     // console.log(this.BASE_URL + id + '/comments/' + comment_id)
     return this.http.delete(this.BASE_URL + id + '/comments/' + comment_id, this.httpOptions)
   }
+
+  addNremoveLike(id:any,blog:any){
+    return this.http.put(this.BASE_URL+id+'/like',blog,this.httpOptions)
+  }
 }

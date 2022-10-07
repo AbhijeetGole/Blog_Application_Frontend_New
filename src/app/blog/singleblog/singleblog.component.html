@@ -1,7 +1,8 @@
-<div class="container mt-5">
+<app-navbar></app-navbar>
+<div [ngClass]="showLikedUser == true ? 'active container mt-5' : 'container mt-5'">
   <div class="row">
     <div class="col-lg-8">
-      <article blogDetails class="shadow-lg  bg-white rounded p-5">
+      <article blogDetails class="shadow-lg bg-white rounded p-5">
         <div class="mb-4 header">
           <div class="">
           <h1 class="fw-bolder mb-1">{{ blogDetails.title }}</h1>
@@ -11,11 +12,17 @@
           </div>
         </div>
           <div class="icon" *ngIf="showbutton">
-            <fa-icon [icon]="faEllipsis" style="font-size:20px" (click)="toggleIcon('ellipsis')"></fa-icon>
-            <div class="dropdown-content" *ngIf="togglebutton" >
+            <fa-icon
+              [icon]="faEllipsis"
+              style="font-size: 20px"
+              (click)="toggleIcon('ellipsis')"
+            ></fa-icon>
+            <div class="dropdown-content" *ngIf="togglebutton">
               <ul>
               <li *ngIf="edit" (click)="updateblog(blogDetails._id)">Edit</li>
-              <li *ngIf="delete" (click)="deleteblog(blogDetails._id)"> Delete</li>
+                <li *ngIf="delete" (click)="deleteblog(blogDetails._id)">
+                  Delete
+                </li>
               </ul>
             </div>
           </div>
@@ -33,12 +40,21 @@
       </article>
       <!-- Comments section-->
            <section class="mb-5 likesComment">
-                 <div class="total">
-         no of comment 
+        <div class="total" (click)="toggleshowLikes()">
+          <p>{{ str }}</p>
                  </div>
                  <div class="icon">
-                  <fa-icon class="like" [icon]="liked ?fasolidThumb:faThumbsup" style="font-size:20px"  (click)="toggleIcon('thumb')" ></fa-icon>
-                  <fa-icon [icon]="faComment"  (click)="toggleIcon('comment')" style="font-size:20px"  ></fa-icon>
+          <fa-icon
+            class="like"
+            [icon]="liked ? fasolidThumb : faThumbsup"
+            style="font-size: 20px"
+            (click)="toggleIcon('thumb')"
+          ></fa-icon>
+          <!-- <fa-icon
+            [icon]="faComment"
+            (click)="toggleIcon('comment')"
+            style="font-size: 20px"
+          ></fa-icon> -->
                  </div>
            </section>
 
@@ -103,5 +119,22 @@
         </div>
       </div>
     </div>
+
+    <!-- show likes -->
+ 
+  </div>
+
+</div>
+<div *ngIf="showLikedUser" class="likesContainer">
+  <div class="xicon" >
+    <div class="xiconChild" (click)="toggleshowLikes()">
+      <fa-icon [icon]=faxmark ></fa-icon>
+    </div>
+  </div>
+  <div *ngFor="let user of likes">
+    <div class="likedUser">
+      {{ user.username }}
+    </div>
   </div>
 </div>
+<app-footer></app-footer>

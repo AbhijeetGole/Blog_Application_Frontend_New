@@ -25,6 +25,5 @@ import { NgToastModule } from 'ng-angular-popup';
 })
 export class AuthModule { 
   constructor(){
-    console.log('Auth Module loaded!' )
   }
 }

@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommentComponent } from './comment/comment.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EditBlogComponent } from './edit-blog/edit-blog.component';
-import { RecentblogsComponent } from './recentblogs/recentblogs.component';
+import { DashboardModule } from '../dashboard/dashboard.module';
 
 
 @NgModule({
@@ -19,17 +19,14 @@ import { RecentblogsComponent } from './recentblogs/recentblogs.component';
     CreateblogComponent,
     CommentComponent,
     EditBlogComponent,
-    RecentblogsComponent
   ],
   imports: [
     CommonModule,
     BlogRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule
-  ],
-  exports: [
-    RecentblogsComponent
+    FontAwesomeModule,
+    DashboardModule
   ]
 })
 export class BlogModule { }

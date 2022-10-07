@@ -14,8 +14,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FilterPipe } from './pipes/filter.pipe';
 import { NgToastModule } from 'ng-angular-popup';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
