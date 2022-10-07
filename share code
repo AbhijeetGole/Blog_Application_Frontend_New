@@ -1,106 +1,24 @@
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  :root {
-    scroll-behavior: smooth;
-  }
-}
-
-.header{
-  display: flex;
-  justify-content: space-between;
-  max-width: 100%;
-}
-.icon{
-  cursor: pointer;
-  position: relative;
-}
-.dropdown-content{
-  position: absolute;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 10px 10px 44px 0px rgba(0,0,0,0.75);
-}
-
-.dropdown-content ul{
-  padding-left: 0;
-  margin-top: 0rem;
-  margin-bottom: 0rem;
-  width: 100%;
-}
-
-.dropdown-content ul li a{
-  text-decoration: none;
-}
-.dropdown-content ul li {
-  text-align: center;
-  padding-left: 0.4rem;
-  padding-right: 0.4rem;
-  width: 100%;
-  list-style: none;
-  color: #0d6efd
-}
-.dropdown-content ul li:hover{
-  background-color:gray;
-  color:white
-}
-
-
-.likesComment{
-  display: flex;
-  justify-content: space-between;
-  background-color: aqua;
-  padding: 0 1vw 0 1vw  ;
-}
-
-.like{
-  margin-right: 0.5vw;
-}
-.total{
-  cursor: pointer;
-}
-
-.likesContainer{
-  width: 30vw;
-  position:fixed; 
-  top: 10vw; 
-  left: 35vw;
-  display: flex;
-  justify-content: flex-start;
-  background-color: white;
-  flex-wrap: wrap;
-  padding: 2vw;
-  margin: auto;
-  opacity:1;
-  box-shadow: -11px 9px 64px -16px rgba(51,156,109,1);
-
-}
-.likedUser{
-  background-color: white;
-  width: 13vw;
-  padding-top: 0.5rem;
-  padding-bottom: 00.5rem;
-  transition: all 0.3s ease-in;
-  text-align: center;
-}
-.likedUser:hover{
-  background-color: rgb(197, 197, 197);
-  cursor: pointer;
-  
-}
-
-.active{
-  opacity: 0.5;
-}
-
-
-.xiconChild{
-  position: absolute;
-  left: 28vw;
-  top: 1vw;
-  cursor: pointer;
-}
+const blogSchema = new Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  content: {
+    type: String,
+    required: true,
+  },
+  postedDate: {
+    type: Date,
+    default: Date.now
+  },
+  blog_comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "BlogComment" }],
+  blog_likes: [{ user_id: mongoose.Schema.Types.ObjectId,username:String}],
+  authorId: { type: Schema.Types.ObjectId, ref: "PostUser" },
+  username: { type: Schema.Types.Mixed, ref: "PostUser" },
+  imageUrl:{type:String}
+}); 
+const Blog = mongoose.model("Blog", blogSchema);
+module.exports = Blog;
