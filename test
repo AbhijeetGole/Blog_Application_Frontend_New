@@ -1,61 +1,63 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormsModule, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '../../auth/services/auth.service';
-import { ReactiveFormsModule } from '@angular/forms';
+<!-- Navbar Start here -->
+<nav class="navbar navbar-expand-sm sticky-top bg-white shadow p-2 mb-1 bg-body rounded">
+  <div class="container-fluid">
+    <a class="navbar-brand ms-3 fw-bold fs-1" id="brand-name" href="#">
+      <!-- <img src="../../../assets/Images/zensar.png" alt="" height="35" width="150"> -->
+      ZenWrite
+    </a>
+    <button id="toggle-button" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="d-flex flex-row-reverse me-2">
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">
+          <li  class="nav-item" id="writeBlog">
+            <a class="nav-link" routerLink="/blogs/write" href="#" id="navFont">Write a Blog</a>
+          </li>
+          <li *ngIf="!loggedin()" class="nav-item" >
+            <a class="nav-link" routerLink="/auth/login" id="navFont1">Login</a>
+          </li>
+          <!-- <li *ngIf="loggedin()" class="nav-item" >
+            <a class="nav-link" (click)="onLogout()" >Logout</a>
+          </li> -->
+          <div *ngIf="loggedin()" ngbDropdown class="dropdown">
+            <a ngbDropdownToggle class="dropdown-toggle nav-link me-5" href="#" role="button" (click)="false" data-bs-toggle="dropdown" id="dropdownBasic1" aria-expanded="false">
+              Hello, {{loggedinUser}}
+            </a>
+
+            <ul ngbDropdownMenu class="dropdown-menu">
+              <!-- <li  ngbDropdownItem><a class="dropdown-item" href="#">
+                <i class="fas fa-tachometer-alt"></i>   View Dashboard</a></li> -->
+              <li  ngbDropdownItem><a class="dropdown-item" href="#" routerLink="profile">
+                <i class="far fa-user-circle"></i>   My Profile</a></li>
 
 
-// @NgModule({
-//   imports: [NgbModule],
-// })
-// export class YourAppModule {
-// }
-@Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
-})
-export class NavbarComponent implements OnInit {
 
-  //   loginForm=new FormGroup({
-  //   email:new FormControl('',[Validators.required,Validators.email]),
-  //   password:new FormControl('',[Validators.required,Validators.minLength(8)]),
-  // })
+              <li  ngbDropdownItem><a class="dropdown-item" href="#" (click)="onLogout()">
+                <i class="fas fa-sign-out-alt"></i>   Logout</a></li>
+            </ul>
+          </div>
+        </ul>
+      </div>
+    </div>
 
-  // showCard: boolean;
+  </div>
+</nav>
 
-  // loginUser()
-  // {
-  //   console.warn(this.loginForm.value);
-  // }
-  // get email()
-  // {
-  //   return this.loginForm.get('user')
-  // }
+<!-- Navbar End here -->
 
-  // get password()
-  // {
-  //   return this.loginForm.get('password')
-  // }
-  
-  // loggedinUser:string;
-  constructor() {
-    // this.showCard = false
-  }
-
-  ngOnInit(): void {
-
-}
-loggedinUser: any='';
-loggedin() {
-  this.loggedinUser = localStorage.getItem('token');
-  // console.log('token='+this.loggedinUser)
-  // return localStorage.getItem('token');
-  return this.loggedinUser;
-}
-onLogout(){
-  localStorage.removeItem('currentUser');
-  localStorage.removeItem('token');
-}
-
-}
+<!-- <div class="container-fluid" *ngIf="showCard">
+  <div class="card-body w-50 shadow bg-body rounded">
+    <h1>Profile</h1>
+    <div class="profile">
+      <i class="fa-solid fa-user"></i>
+    </div>
+    <div class="info">
+      <div class="info-list">First Name: <span id="name">Aman</span></div>
+      <div class="info-list">Last Name: <span id="name">Gupta</span></div>
+      <div class="info-list">Username: <span id="name">aman123</span></div>
+      <div class="info-list">Email: <span id="name">amanG@gmail.com</span></div>
+    </div>
+  </div>
+</div> -->
