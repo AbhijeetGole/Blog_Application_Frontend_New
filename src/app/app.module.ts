@@ -11,11 +11,13 @@ import { BlogModule } from './blog/blog.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DateAgoPipe
+    DateAgoPipe,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

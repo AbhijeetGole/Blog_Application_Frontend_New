@@ -3,9 +3,14 @@
     <p class="fw-bold fs-2 mt-3 ms-4 me-4 border-bottom pb-3 mb-5 border-secondary">
         All Blogs
     </p>
+    <!-- <div>
+        <input type="text" class="form-control" id="search" 
+        placeholder="Search blog by title name" [(ngModel)]="titleSearch">
+    </div> -->
 </div>
 <div class="container-fluid blog">
     <div class="row">
+        <!-- | filter:titleSearch" -->
         <div class="col-sm-4 card_padding" *ngFor="let blog of listBlogs">
          <a [routerLink]="['/blogs/blogtitle', blog._id]" target="_self" class="cardlink">
                   <div class="card h-100">

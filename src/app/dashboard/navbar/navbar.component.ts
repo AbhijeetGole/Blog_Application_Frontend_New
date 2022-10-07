@@ -16,30 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  //   loginForm=new FormGroup({
-  //   email:new FormControl('',[Validators.required,Validators.email]),
-  //   password:new FormControl('',[Validators.required,Validators.minLength(8)]),
-  // })
-
-  // showCard: boolean;
-
-  // loginUser()
-  // {
-  //   console.warn(this.loginForm.value);
-  // }
-  // get email()
-  // {
-  //   return this.loginForm.get('user')
-  // }
-
-  // get password()
-  // {
-  //   return this.loginForm.get('password')
-  // }
-
   constructor() {
-    // this.showCard = false
   }
 
   ngOnInit(): void {
@@ -49,6 +26,7 @@ loggedin() {
   return localStorage.getItem('token');
 }
 onLogout(){
+  localStorage.removeItem('currentUser');
   localStorage.removeItem('token');
 }
 }
