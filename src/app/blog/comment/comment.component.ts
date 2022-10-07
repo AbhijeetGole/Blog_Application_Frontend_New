@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BlogserviceService } from '../service/blogservice.service';
 import { faEllipsisVertical, faPaperPlane, faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
+import {  NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-comment',
@@ -25,7 +26,8 @@ export class CommentComponent implements OnInit {
 
   constructor(private bulider:FormBuilder, private blogService:BlogserviceService, 
               private activatedRoute: ActivatedRoute,
-              private router: Router) { 
+              private router: Router,
+              private toast: NgToastService) { 
                 this.commentForm=bulider.group({
                   comment:['',Validators.required]
                 })
@@ -50,6 +52,7 @@ export class CommentComponent implements OnInit {
     this.blogService.postComment(this.blogId,this.comment).subscribe(data=>{
       console.log(data);
       if (data) {
+        this.toast.success({detail:"Comment Added Successfully",duration:2000})
         this.blogService.getallComments(this.blogId).subscribe(data=>{
           this.listComments = data;
           this.commentForm.reset();
@@ -66,6 +69,7 @@ export class CommentComponent implements OnInit {
         this.blogService.deleteComment(id, comment_id).subscribe( (result) => {
           console.log("deleted", result);
           if (result) {
+            this.toast.success({detail:"Comment Deleted Successfully",duration:2000})
             this.blogService.getallComments(this.blogId).subscribe(data=>{
               this.listComments = data;
               console.log(data)
@@ -92,6 +96,7 @@ export class CommentComponent implements OnInit {
     this.blogService.updateComment(id, comment_id, this.comment).subscribe((result)=>{
       console.log("updated", result);
       if (result) {
+        this.toast.success({detail:"Comment Updated Successfully",duration:2000})
         this.blogService.getallComments(this.blogId).subscribe(data=>{
           this.listComments = data;
           this.commentForm.reset();

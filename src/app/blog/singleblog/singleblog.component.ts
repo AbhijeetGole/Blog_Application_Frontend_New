@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { BlogserviceService } from '../service/blogservice.service';
-
 import{faEllipsisVertical} from '@fortawesome/free-solid-svg-icons'
 import{faThumbsUp as fasolidThumb} from '@fortawesome/free-solid-svg-icons'
 import{faThumbsUp,faCommentDots}from '@fortawesome/free-regular-svg-icons'
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-singleblog',
@@ -34,7 +33,8 @@ export class SingleblogComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private blogService: BlogserviceService,
-    private router:Router
+    private router:Router,
+    private toast: NgToastService
   ) {}
 
   ngOnInit(): void {
@@ -84,6 +84,7 @@ export class SingleblogComponent implements OnInit {
   deleteblog(id:any){
     console.log(id)
      this.blogService.deleteblog(id).subscribe(response=>{
+      this.toast.success({detail:"Blog Deleted Successfully",duration:2000})
       console.log(response)
       this.router.navigateByUrl('/blog/blogs');
      })

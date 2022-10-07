@@ -1,59 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { Router } from '@angular/router';
-// import { AuthService } from '../services/auth.service';
-
-// @Component({
-//   selector: 'app-login',
-//   templateUrl: './login.component.html',
-//   styleUrls: ['./login.component.css']
-// })
-// export class LoginComponent implements OnInit {
-
-//   loginForm: any;
-//   title: any;
-
-//   constructor(
-//     private fb: FormBuilder,
-//     private router: Router,
-//     private authService: AuthService,
-//   ) {
-//     if (this.authService.isLoggedIn()) {
-//       this.router.navigateByUrl('/home');
-//     }
-  
-//   }
-
-//   ngOnInit() {
-//     this.title = 'Administrator Login';
-//     this.createForm();
-//   }
-
-//   createForm() {
-//     this.loginForm = this.fb.group({
-//       email: ['',[Validators.required,Validators.email]],
-//       password: ['',[Validators.required,Validators.minLength(6)]]
-//     })
-//   }
-
- 
-//   get f() { return this.loginForm.controls }
-//   onSubmit() {
-//     this.authService.login({
-//       email: this.loginForm.get('email').value,
-//       password: this.loginForm.get('password').value
-//     }).subscribe(
-//       result => {
-//         if (result) {
-//           this.router.navigateByUrl('/home');
-//           console.log("logged in");
-//         }
-//       }
-//     )
-//   }
-
-// }
-
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -65,6 +9,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import {  NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-login',
@@ -78,7 +23,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private toast: NgToastService
   ) {
     if (this.authService.isLoggedIn()) {
       this.router.navigateByUrl('/home');
@@ -93,28 +39,6 @@ export class LoginComponent implements OnInit {
   get f() {
     return this.loginForm.controls;
   }
-
-  // onLogin() {
-  //   console.log(this.loginForm.value);
-  //   this.authService.login({
-  //     email: this.loginForm.get('email').value,
-  //     password: this.loginForm.get('password').value,
-  //   }).subscribe((result) => {
-  //     // if (result) {
-  //     //   this.router.navigateByUrl('/home');
-  //     // }
-  //   const token = this.authService.getCurrentUser();
-  //   console.log(token)
-  //   if (token) {
-  //     localStorage.setItem('token', token.userName);
-  //     console.log('Login Successful');
-  //     this.router.navigate(['/']);
-  //   } else {
-  //     console.log('Login Failed');
-  //   }
-  //   });
-    
-  // }
 
   createForm() {
     this.loginForm = this.fb.group({
@@ -131,6 +55,7 @@ export class LoginComponent implements OnInit {
       })
       .subscribe((result) => {
         if (result) {
+        this.toast.success({detail:"Logged in Successfully",duration:2000})
         let token = this.authService.getCurrentUser();
         console.log(token)
         if(token){
@@ -138,13 +63,15 @@ export class LoginComponent implements OnInit {
         }
         console.log(token)
         if (token) {
-          localStorage.setItem('token', token.username);
+          localStorage.setItem('token', token.firstname);
           console.log('Login Successful');
           this.router.navigate(['/']);
         } else {
           console.log('Login Failed');
         }
         }
+      },(error: any) =>{
+        this.toast.error({detail:"Login Failed, User Name or Password Is Incorrect !!",duration:2000})
       });
   }
 }

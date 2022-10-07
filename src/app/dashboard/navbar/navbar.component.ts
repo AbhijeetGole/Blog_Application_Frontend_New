@@ -1,32 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormsModule, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '../../auth/services/auth.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import {  NgToastService } from 'ng-angular-popup';
 
-
-// @NgModule({
-//   imports: [NgbModule],
-// })
-// export class YourAppModule {
-// }
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  constructor() {
+  constructor(private toast: NgToastService) {}
+
+  ngOnInit(): void {}
+  loggedinUser: any = '';
+  loggedin() {
+    this.loggedinUser = localStorage.getItem('token');
+    return this.loggedinUser;
   }
-
-  ngOnInit(): void {
-
-}
-loggedin() {
-  return localStorage.getItem('token');
-}
-onLogout(){
-  localStorage.removeItem('currentUser');
-  localStorage.removeItem('token');
-}
+  onLogout() {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
+    // this.toast.success({detail:"Logged out Successfully",duration:2000})
+  }
 }

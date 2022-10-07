@@ -12,6 +12,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FilterPipe } from './pipes/filter.pipe';
+import { NgToastModule } from 'ng-angular-popup';
+
+
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     AuthModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    NgToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

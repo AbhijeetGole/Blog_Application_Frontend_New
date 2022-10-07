@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {  NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-logout',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private toast: NgToastService) { }
 
   ngOnInit(): void {
   }

@@ -8,6 +8,7 @@ import {
   FormBuilder,
 } from '@angular/forms';
 import { BlogserviceService } from '../service/blogservice.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-edit-blog',
@@ -30,7 +31,8 @@ export class EditBlogComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private blogService: BlogserviceService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toast: NgToastService
   ) {
     this.editForm = formBuilder.group({
       title: ['', Validators.required],
@@ -61,6 +63,7 @@ export class EditBlogComponent implements OnInit {
     'content':this.editForm.get('content')?.value
     }
      this.blogService.editblog(this.blogId,data).subscribe(response=>{
+      this.toast.success({detail:"Blog Edited Successfully",duration:2000})
       console.log(response);
       this.router.navigateByUrl(`/blogs/blogtitle/${this.blogId}`)
      })

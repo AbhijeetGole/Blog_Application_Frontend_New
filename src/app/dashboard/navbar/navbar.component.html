@@ -22,8 +22,8 @@
             <a class="nav-link" (click)="onLogout()" >Logout</a>
           </li> -->
           <div *ngIf="loggedin()" ngbDropdown class="dropdown">
-            <a ngbDropdownToggle class="dropdown-toggle nav-link me-5" href="#" role="button" data-bs-toggle="dropdown" id="dropdownBasic1" aria-expanded="false">
-              Hello, User
+            <a ngbDropdownToggle class="dropdown-toggle nav-link me-5" href="#" role="button" (click)="false" data-bs-toggle="dropdown" id="dropdownBasic1" aria-expanded="false">
+              Hello, {{loggedinUser}}
             </a>
 
             <ul ngbDropdownMenu class="dropdown-menu">

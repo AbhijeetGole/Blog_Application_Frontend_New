@@ -6,6 +6,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { RegisteruserComponent } from './registeruser/registeruser.component';
 import { FormsModule,ReactiveFormsModule }   from '@angular/forms';
+import { NgToastModule } from 'ng-angular-popup';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { FormsModule,ReactiveFormsModule }   from '@angular/forms';
     CommonModule,
     AuthRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgToastModule
   ],
 })
 export class AuthModule { 
