@@ -10,7 +10,7 @@ import { CommentComponent } from './comment/comment.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EditBlogComponent } from './edit-blog/edit-blog.component';
 import { DashboardModule } from '../dashboard/dashboard.module';
-
+import { FilterPipe } from '../pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -19,6 +19,7 @@ import { DashboardModule } from '../dashboard/dashboard.module';
     CreateblogComponent,
     CommentComponent,
     EditBlogComponent,
+    FilterPipe
   ],
   imports: [
     CommonModule,

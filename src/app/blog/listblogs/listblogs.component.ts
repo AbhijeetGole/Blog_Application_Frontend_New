@@ -9,7 +9,7 @@ import { BlogserviceService } from '../service/blogservice.service';
 export class ListblogsComponent implements OnInit {
 
   listBlogs!: any;
-  titleSearch: string = ""
+  titleSearch: any
   constructor(private blogservice:BlogserviceService) { }
 
   defaultimage:string='../../../assets/Images/blog-1.avif';

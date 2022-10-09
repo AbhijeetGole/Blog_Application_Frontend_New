@@ -8,17 +8,14 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { BlogModule } from './blog/blog.module';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FilterPipe } from './pipes/filter.pipe';
 import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
   declarations: [
     AppComponent,
     DateAgoPipe,
-    FilterPipe
   ],
   imports: [
     BrowserModule,

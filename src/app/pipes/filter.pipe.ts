@@ -6,8 +6,15 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterPipe implements PipeTransform {
 
   transform(value: any, searchBlog: any[]): any {
-    return value.filter(function(search: { title: any[][]; }){
-      return search.title.indexOf(searchBlog) > -1
+    if (!value) {
+      return [];
+    }
+    if (!searchBlog) {
+      return value;
+    }
+
+    return value.filter(function(search: { title: { toLocaleLowerCase: () => any[][]; } }){
+      return search.title.toLocaleLowerCase().indexOf(searchBlog) > -1
     });
   }
 

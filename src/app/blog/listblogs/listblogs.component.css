@@ -17,10 +17,20 @@
     padding-right: 35px;
   }
 
+  .blog_header{
+    display: flex;
+    justify-content: space-between;
+  }
+
   .card_padding{
     padding-bottom: 20px;
   }
   .cardlink{
     text-decoration: none;
   }
-  
+  .search{
+    height: 20%;
+    width: auto;
+    margin-top: 30px;
+    margin-right: 1.5rem;
+  }

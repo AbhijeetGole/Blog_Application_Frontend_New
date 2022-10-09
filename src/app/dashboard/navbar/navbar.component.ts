@@ -9,17 +9,17 @@ import {  NgToastService } from 'ng-angular-popup';
 export class NavbarComponent implements OnInit {
   constructor(private toast: NgToastService) {}
 
-  ngOnInit(): void {}
   loggedinUser: any = '';
-
+  ngOnInit(): void {}
+  
   loggedin() {
     this.loggedinUser = localStorage.getItem('token');
     return this.loggedinUser;
   }
-  
+
   onLogout() {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('token');
-    // this.toast.success({detail:"Logged out Successfully",duration:2000})
+    this.toast.success({detail:"Logged out Successfully",duration:2000})
   }
 }
