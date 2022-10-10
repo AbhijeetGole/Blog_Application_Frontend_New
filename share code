@@ -1,225 +1,26 @@
-const express = require("express");
-const Blog = require("../model/blogDB");
-const BlogLike = require("../model/blogLike");
-const auth = require("../middleware/auth_File");
-const mongoose = require("mongoose");
-const axios = require("axios");
-const { response } = require("express");
-const router = express.Router();
-router.get("/", async (req, res) => {
-  try {
-    const allBlog = await Blog.find();
-    res.send(allBlog);
-  } catch (err) {
-    res.send(err);
-  }
-});
-router.get("/:id", async (req, res) => {
-  const id = req.params.id;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).send({
-      message: "Invalid blog id",
-      data: {},
-    });
-  }
-  Blog.findOne({ _id: id }).then(async (blog) => {
-    // console.log(blog)
-    if (!blog) {
-      return res.status(400).send({
-        message: "No blog found",
-        data: {},
-      });
-    } else {
-      try {
-        const Blogs = await Blog.findById(id);
-        res.send(Blogs);
-      } catch (err) {
-        res.send(err.message);
-      }
-    }
-  });
-});
-router.post("/", auth, async (req, res) => {
-  const { title, content, imageUrl } = req.body;
-  const authorId = req.user.user_id;
-  const username = req.user.username;
-  const newBlog = new Blog({ title, content, authorId, username, imageUrl });
-  try {
-    const newPost = await newBlog.save();
-    res.send(newPost);
-  } catch (err) {
-    res.send(err);
-  }
-});
-router.put("/:id", auth, async (req, res) => {
-  const id = req.params.id;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).send({
-      message: "Invalid blog id",
-      data: {},
-    });
-  }
-  try {
-    const { title, content } = req.body;
-    const blog = await Blog.findById(id);
-    const loggedUserID = req.user.user_id;
-    if (loggedUserID == blog.authorId) {
-      const updatedBlog = await Blog.findByIdAndUpdate(
-        id,
-        { $set: { title, content } },
-        { new: true }
-      );
-      res.send(updatedBlog);
-    } else {
-      res.send("You are not authorised to Update this blog ");
-    }
-  } catch (err) {
-    res.send(err);
-  }
-});
-router.delete("/:id", auth, async (req, res) => {
-  const id = req.params.id;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).send({
-      message: "Invalid blog id",
-      data: {},
-    });
-  }
-  try {
-    const loggedUserID = req.user.user_id;
-    Blog.findById({ _id: id }).then(async (record) => {
-      if (!record) {
-        return res.status(400).send({
-          message: "Blog Not found",
-          data: {},
-        });
-      } else {
-        await axios
-          .get(
-            `http://localhost:8000/technical-blogging/usergetbyId/${loggedUserID}`
-          )
-          .then(async (response) => {
-            const UserData = response.data;
-            if (UserData.role == "admin" || loggedUserID == record.authorId) {
-              const deletedBlog = await Blog.deleteOne({ _id: id });
-              if (deletedBlog.acknowledged) {
-                res.status(200).json("Blog has successfully deleted");
-              }
-            } else {
-              res.send("You are not authorized to delete this blog");
-            }
-          });
-      }
-    });
-  } catch (err) {
-    res.status(400).send(err);
-  }
-});
 
+<form class="container" [formGroup]="blogForm" (ngSubmit)="save()">
+  <h2 class="header">Create Blog</h2>
+ <div class="form-group title">
+   <label for="exampleFormControlInput1">Title</label>
+   <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Add Title of the blog" formControlName="title">
+   <span *ngIf="blogForm.get('title')?.hasError('required')&&blogForm.get('title')?.touched">Enter Title Of the blog</span>
+ </div>
+ <div class="form-group img">
+   <label for="imageControl">Image</label>
+   <input type="text" class="form-control" id="imageControl" placeholder="Add Image Url" formControlName="image">
+ </div>
+ <div class="form-group content">
+   <label for="content">Content</label>
+   <ckeditor [editor]="Editor" [config]="config" formControlName="content"></ckeditor>
+   <!-- <textarea class="form-control" id="content" rows="5" contenteditable="true" formControlName="content"></textarea> -->
+   <span *ngIf="blogForm.get('content')?.hasError('required')&&blogForm.get('content')?.touched">Add content</span>
+  
 
-router.put("/:id/like", auth, async (req, res) => {
-  let blog_id = req.params.id;
-  const loggedUserID = req.user.user_id;
-  if (!mongoose.Types.ObjectId.isValid(blog_id)) {
-    return res.status(400).send({
-      message: "Invalid blog id",
-      data: {},
-    });
-  }
+ </div>
+ <div class="form-group buttons">
+ <button type="reset" class="btn btn-danger reset">Reset</button>
+ <button type="submit" class="btn btn-primary" [disabled]="!blogForm.valid">Submit</button>
+</div>
+</form>
 
-  Blog.findOne({ _id: blog_id })
-    .then(async (blog) => {
-      if (!blog) {
-        return res.status(400).send({
-          message: "No blog found",
-          data: {},
-        });
-      } else {
-        
-        await Blog.exists(
-          {
-            _id: blog_id,
-            blog_likes: {
-              $elemMatch: { user_id: loggedUserID },
-            },
-          },
-          async (err, doc) => {
-            if (err) {
-              res.json("error");
-            }
-
-            if (doc) {
-              Blog.findByIdAndUpdate(
-                { _id: blog_id },
-                {
-                  $pull: {
-                    blog_likes: {
-                      user_id: loggedUserID,
-                      username: req.user.username,
-                    },
-                  },
-                }
-              )
-                .then(res.json("Like removed"))
-                .catch((err) => {
-                  res.json("error");
-                });
-            } else {
-              Blog.findByIdAndUpdate(
-                { _id: blog_id },
-                {
-                  $addToSet: {
-                    blog_likes: {
-                      user_id: loggedUserID,
-                      username: req.user.username,
-                    },
-                  },
-                }
-              )
-                .then(res.json("Liked"))
-                .catch((err) => {
-                  res.json("error");
-                });
-            }
-          }
-        );
-      }
-    })
-    .catch((err) => {
-      return res.status(400).send({
-        message: err.message,
-        data: err,
-      });
-    });
-});
-
-router.get('/chart/report/topContributer',async(req,res)=>{
-  await Blog.aggregate([
-    { $group: { "_id": "$username", count:{$sum:1} } },
-    {$sort:{count:-1}},{
-      $limit:5
-    }
-  ]).then(response=>{
-    res.send(response)
-  }).catch(err=>res.send(err))
-})
-router.get('/chart/report/popularBlog',async(req,res)=>{
-  await Blog.aggregate([
-    { $project:{
-      title:"$title",
-      score:{$sum:[{$size:"$blog_likes"},{$size:"$blog_comments"}]},
-      time:"$postedDate",
-      noOfLikes:{$size:"$blog_likes"},
-      noOfComments:{$size:"$blog_comments"}
-    }},
-    {$sort:{score:-1,time:1}},{
-      $limit:5
-    }
-  ]).then(response=>{
-    res.send(response)
-  }).catch(err=>res.send(err))
-})
-
-
-
-module.exports = router;
