@@ -5,6 +5,7 @@ import { SingleblogComponent } from './singleblog/singleblog.component';
 import { AuthGuard } from '../auth/auth.guard';
 import { CreateblogComponent } from './createblog/createblog.component';
 import { EditBlogComponent } from './edit-blog/edit-blog.component';
+import { UserInfoComponent } from './user-info/user-info.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,12 @@ const routes: Routes = [
   {
     path: 'blogs/blogtitle/:id',
     component: SingleblogComponent
+  },
+  {
+
+    path: 'user/:id',
+    component: UserInfoComponent
+
   }
 ];
 

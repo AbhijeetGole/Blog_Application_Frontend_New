@@ -4,8 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BlogserviceService } from '../service/blogservice.service';
 
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
-import { faThumbsUp as fasolidThumb,faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp as fasolidThumb,faXmark ,faUser} from '@fortawesome/free-solid-svg-icons';
 import { faThumbsUp, faCommentDots } from '@fortawesome/free-regular-svg-icons';
+import {  NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-singleblog',
@@ -17,6 +18,7 @@ export class SingleblogComponent implements OnInit {
   blogDetails: any;
  
   edit: boolean = false;
+  userlogo=faUser;
   delete: boolean = false;
   showbutton = false;
   togglebutton = false;
@@ -39,7 +41,8 @@ export class SingleblogComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private blogService: BlogserviceService,
-    private router: Router
+    private router: Router,
+    private toast: NgToastService
   ) {}
 
   ngOnInit(): void {
@@ -96,7 +99,10 @@ export class SingleblogComponent implements OnInit {
       this.blogService
         .addNremoveLike(this.blogId, this.blogDetails)
         .subscribe((response) => {
-          alert(response);
+
+          str=JSON.stringify(response)
+          this.toast.success({detail:str,duration:2000})
+         
           this.blogService.getBlogbyId(this.blogId).subscribe((data) => {
             this.blogDetails = data;
             this.likes = this.blogDetails.blog_likes;
@@ -124,7 +130,13 @@ export class SingleblogComponent implements OnInit {
   updateblog(id: string) {
     this.router.navigateByUrl(`/blog/blogs/edit/${id}`);
   }
+
   toggleshowLikes(){
      this.showLikedUser=!this.showLikedUser; 
+  }
+
+  showuser(userinfo:any)
+  { 
+    this.router.navigateByUrl('user/'+userinfo.user_id)
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { tick } from '@angular/core/testing';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {
   FormGroup,
   FormControl,
@@ -18,11 +19,26 @@ import { NgToastService } from 'ng-angular-popup';
 })
 export class CreateblogComponent implements OnInit {
   blogForm: FormGroup;
-
+  public Editor = ClassicEditor;
   blog = {
     title: '',
     content: '',
     imageUrl: '',
+  };
+  config = {
+    toolbar: [
+      'heading',
+      'bold',
+      'italic',
+      'link',
+      'undo',
+      'redo',
+      'numberedList',
+      'bulletedList',
+      'blockQuote',
+      'colors',
+    ],
+    mediaEmbed: { previewsInData: true },
   };
   constructor(
     private builder: FormBuilder,
@@ -42,7 +58,10 @@ export class CreateblogComponent implements OnInit {
     this.blog.content = this.blogForm.value.content;
     this.blog.imageUrl = this.blogForm.value.image;
     this.blogservice.writeBlog(this.blog).subscribe((response: any) => {
-      this.toast.success({detail:"Blog Created Successfully",duration:2000})
+      this.toast.success({
+        detail: 'Blog Created Successfully',
+        duration: 2000,
+      });
       console.log(response);
       this.router.navigateByUrl('/home');
     });

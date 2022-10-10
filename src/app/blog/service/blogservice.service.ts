@@ -61,4 +61,9 @@ export class BlogserviceService {
   addNremoveLike(id:any,blog:any){
     return this.http.put(this.BASE_URL+id+'/like',blog,this.httpOptions)
   }
+
+  getUserbyId(id:string)
+  {
+    return this.http.get('http://localhost:6001/user/technical-blogging/usergetbyId/'+id)
+  }
 }

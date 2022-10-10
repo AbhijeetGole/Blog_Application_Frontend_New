@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { BlogserviceService } from '../service/blogservice.service';
 import { NgToastService } from 'ng-angular-popup';
-
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 @Component({
   selector: 'app-edit-blog',
   templateUrl: './edit-blog.component.html',
@@ -22,6 +22,21 @@ export class EditBlogComponent implements OnInit {
     content: '',
     imageUrl: '',
   };
+  public Editor = ClassicEditor;
+  config={
+    toolbar:[
+      'heading',
+      'bold',
+      'italic',
+      'link',
+      'undo', 'redo', 'numberedList', 'bulletedList',
+      'blockQuote',
+      'colors'
+    ],
+    mediaEmbed: {previewsInData: true}
+
+   
+ }
   editForm = new FormGroup({
     title: new FormControl(),
     content: new FormControl(),

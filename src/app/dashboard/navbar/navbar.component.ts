@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {  NgToastService } from 'ng-angular-popup';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-navbar',
@@ -10,16 +10,22 @@ export class NavbarComponent implements OnInit {
   constructor(private toast: NgToastService) {}
 
   loggedinUser: any = '';
+  userData: any;
+  isadmin: boolean = false;
   ngOnInit(): void {}
-  
+
   loggedin() {
     this.loggedinUser = localStorage.getItem('token');
+    this.userData = localStorage.getItem('currentUser');
+    this.userData = JSON.parse(this.userData);
+    if (this.userData && this.userData.role == 'admin') 
+    this.isadmin = true;
     return this.loggedinUser;
   }
 
   onLogout() {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('token');
-    this.toast.success({detail:"Logged out Successfully",duration:2000})
+    this.toast.success({ detail: 'Logged out Successfully', duration: 2000 });
   }
 }

@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-sm sticky-top bg-white shadow p-2 mb-1">
   <div class="container-fluid">
     <a class="navbar-brand ms-3 fw-bold fs-1" id="brand-name" href="#">
-      <img src="../../../assets/Images/zensar_logo.png" alt="" height="50px" width="70px">
+      <img src="../../../assets/Images/zensar_logo.png" alt="" height="45px" width="63px">
       ZenWrite
     </a>
     <button id="toggle-button" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,6 +31,8 @@
                 <i class="fas fa-tachometer-alt"></i>   View Dashboard</a></li> -->
               <li  ngbDropdownItem><a class="dropdown-item" href="#" routerLink="profile">
                 <i class="far fa-user-circle"></i>   My Profile</a></li>
+              <li *ngIf="isadmin"  ngbDropdownItem><a class="dropdown-item" href="#" routerLink="/report">
+                <i class="fas fa-tachometer-alt"></i> Report</a></li>
 
 
 

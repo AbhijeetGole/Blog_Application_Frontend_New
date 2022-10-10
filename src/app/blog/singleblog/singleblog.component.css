@@ -102,3 +102,7 @@
   top: 1vw;
   cursor: pointer;
 }
+
+#header{
+  font-weight: 600;
+}

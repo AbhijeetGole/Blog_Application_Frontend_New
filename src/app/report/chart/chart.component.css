@@ -1,0 +1,14 @@
+p {
+    font-family: Lato;
+  }
+
+ *{
+    text-align: center;
+ } 
+ canvas{
+    height: 100vh;
+    margin-bottom: 5vw;
+ }
+ .cont{
+    width: 50vw;
+ }

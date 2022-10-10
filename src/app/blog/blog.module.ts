@@ -11,6 +11,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EditBlogComponent } from './edit-blog/edit-blog.component';
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { FilterPipe } from '../pipes/filter.pipe';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { UserInfoComponent } from './user-info/user-info.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { FilterPipe } from '../pipes/filter.pipe';
     CreateblogComponent,
     CommentComponent,
     EditBlogComponent,
-    FilterPipe
+    FilterPipe,
+    UserInfoComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +30,8 @@ import { FilterPipe } from '../pipes/filter.pipe';
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    DashboardModule
+    DashboardModule,
+    CKEditorModule
   ]
 })
 export class BlogModule { }

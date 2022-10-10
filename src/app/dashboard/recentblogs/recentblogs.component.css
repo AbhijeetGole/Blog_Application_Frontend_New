@@ -24,3 +24,10 @@
   .allblogs{
       text-decoration: none;
   }
+
+  .title_blog{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 90%;
+  }

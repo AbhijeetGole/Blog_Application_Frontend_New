@@ -29,7 +29,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((data) => {
-      console.log(data);
+      // console.log(data);
     });
 
     this.loggeduser = JSON.parse(localStorage.getItem('currentUser') || '{}');
