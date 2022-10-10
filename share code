@@ -1,26 +1,86 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import {
+  FormGroup,
+  FormControl,
+  FormArray,
+  Validators,
+  FormBuilder,
+} from '@angular/forms';
+import { BlogserviceService } from '../service/blogservice.service';
+import { NgToastService } from 'ng-angular-popup';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+@Component({
+  selector: 'app-edit-blog',
+  templateUrl: './edit-blog.component.html',
+  styleUrls: ['./edit-blog.component.css'],
+})
+export class EditBlogComponent implements OnInit {
+  blogId: string = '';
+  blogDetails: any = {
+    title: '',
+    content: '',
+    imageUrl: '',
+  };
+  public Editor = ClassicEditor;
+  config={
+    toolbar:[
+      'heading',
+      'bold',
+      'italic',
+      'link',
+      'undo', 'redo', 'numberedList', 'bulletedList',
+      'blockQuote',
+      'colors'
+    ],
+    mediaEmbed: {previewsInData: true}
 
-<form class="container" [formGroup]="blogForm" (ngSubmit)="save()">
-  <h2 class="header">Create Blog</h2>
- <div class="form-group title">
-   <label for="exampleFormControlInput1">Title</label>
-   <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Add Title of the blog" formControlName="title">
-   <span *ngIf="blogForm.get('title')?.hasError('required')&&blogForm.get('title')?.touched">Enter Title Of the blog</span>
- </div>
- <div class="form-group img">
-   <label for="imageControl">Image</label>
-   <input type="text" class="form-control" id="imageControl" placeholder="Add Image Url" formControlName="image">
- </div>
- <div class="form-group content">
-   <label for="content">Content</label>
-   <ckeditor [editor]="Editor" [config]="config" formControlName="content"></ckeditor>
-   <!-- <textarea class="form-control" id="content" rows="5" contenteditable="true" formControlName="content"></textarea> -->
-   <span *ngIf="blogForm.get('content')?.hasError('required')&&blogForm.get('content')?.touched">Add content</span>
-  
+   
+ }
+  editForm = new FormGroup({
+    title: new FormControl(),
+    content: new FormControl(),
+    image: new FormControl(),
+  });
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private blogService: BlogserviceService,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private toast: NgToastService
+  ) {
+    this.editForm = formBuilder.group({
+      title: ['', Validators.required],
+      content: ['', Validators.required],
+      image: [''],
+    });
+  }
 
- </div>
- <div class="form-group buttons">
- <button type="reset" class="btn btn-danger reset">Reset</button>
- <button type="submit" class="btn btn-primary" [disabled]="!blogForm.valid">Submit</button>
-</div>
-</form>
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe((data) => {
+      this.blogId = data['id'];
+      this.blogService.getBlogbyId(this.blogId).subscribe((data) => {
+        this.blogDetails = data;
+        this.editForm.patchValue({
+          title: this.blogDetails.title,
+          content: this.blogDetails.content,
+          image:this.blogDetails.imageUrl
+        });
 
+      });
+    });
+  }
+
+  edit() {
+    let data={
+   'title':this.editForm.get('title')?.value,
+    'imageUrl':this.editForm.get('image')?.value,
+    'content':this.editForm.get('content')?.value
+    }
+     this.blogService.editblog(this.blogId,data).subscribe(response=>{
+      this.toast.success({detail:"Blog Edited Successfully",duration:2000})
+      console.log(response);
+      this.router.navigateByUrl(`/blogs/blogtitle/${this.blogId}`)
+     })
+  }
+}
