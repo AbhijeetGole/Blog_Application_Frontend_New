@@ -1,136 +1,141 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+<app-navbar></app-navbar>
+<div [ngClass]="showLikedUser == true ? 'active container mt-5' : 'container mt-5'">
+  <div class="row">
+    <div class="col-lg-8">
+      <article blogDetails class="shadow-lg bg-white rounded p-5">
+        <div class="mb-4 header">
+          <div class="">
+          <h1 class="fw-bolder mb-1">{{ blogDetails.title }}</h1>
+          <div class="text-muted fst-italic mb-2">
+            Posted on {{ blogDetails.postedDate | date }} by
+            {{ blogDetails.username }}
+          </div>
+        </div>
+          <div class="icon" *ngIf="showbutton">
+            <fa-icon
+              [icon]="faEllipsis"
+              style="font-size: 20px"
+              (click)="toggleIcon('ellipsis')"
+            ></fa-icon>
+            <div class="dropdown-content" *ngIf="togglebutton">
+              <ul>
+              <li *ngIf="edit" (click)="updateblog(blogDetails._id)">Edit</li>
+                <li *ngIf="delete" (click)="deleteblog(blogDetails._id)">
+                  Delete
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <figure class="mb-4">
+          <img
+            class="img-fluid rounded w-100" 
+            [src]="blogDetails.imageUrl"
+            alt="..."
+          />
+        </figure>
+        <section class="mb-5">
+          <div [innerHTML]="blogDetails.content"></div>
+        </section>
+      </article>
+      <!-- Comments section-->
+           <section class="mb-5 likesComment">
+        <div class="total" (click)="toggleshowLikes()">
+          <p>{{ str }}</p>
+                 </div>
+                 <div class="icon">
+          <fa-icon
+            class="like"
+            [icon]="liked ? fasolidThumb : faThumbsup"
+            style="font-size: 20px"
+            (click)="toggleIcon('thumb')"
+          ></fa-icon>
+          <!-- <fa-icon
+            [icon]="faComment"
+            (click)="toggleIcon('comment')"
+            style="font-size: 20px"
+          ></fa-icon> -->
+                 </div>
+           </section>
 
-import { BlogserviceService } from '../service/blogservice.service';
+      <section class="mb-5">
+        <section class="mb-5">
+          <div class="card bg-light">
+            <div class="card-body">
+              <app-comment></app-comment>
+            </div>
+          </div>
+        </section>
+      </section>
+    </div>
+    <!-- Side widgets-->
+    <div class="col-lg-4">
+      <!-- Search widget-->
+      <!-- <div class="card mb-4">
+        <div class="card-header">Search</div>
+        <div class="card-body">
+          <div class="input-group">
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Enter search term..."
+              aria-label="Enter search term..."
+              aria-describedby="button-search"
+            />
+            <button class="btn btn-primary" id="button-search" type="button">
+              Go!
+            </button>
+          </div>
+        </div>
+      </div> -->
+      <!-- Categories widget-->
+      <div class="card mb-4">
+        <div class="card-header">Categories</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <ul class="list-unstyled mb-0">
+                <li><a href="#!">Web Design</a></li>
+                <li><a href="#!">HTML</a></li>
+                <li><a href="#!">Freebies</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-6">
+              <ul class="list-unstyled mb-0">
+                <li><a href="#!">JavaScript</a></li>
+                <li><a href="#!">CSS</a></li>
+                <li><a href="#!">Tutorials</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Side widget-->
+      <div class="card mb-4">
+        <div class="card-header">Side Widget</div>
+        <div class="card-body">
+          You can put anything you want inside of these side widgets. They are
+          easy to use, and feature the Bootstrap 5 card component!
+        </div>
+      </div>
+    </div>
 
-import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
-import { faThumbsUp as fasolidThumb,faXmark ,faUser} from '@fortawesome/free-solid-svg-icons';
-import { faThumbsUp, faCommentDots } from '@fortawesome/free-regular-svg-icons';
-
-@Component({
-  selector: 'app-singleblog',
-  templateUrl: './singleblog.component.html',
-  styleUrls: ['./singleblog.component.css'],
-})
-export class SingleblogComponent implements OnInit {
-  blogId: string = '';
-  blogDetails: any;
+    <!-- show likes -->
  
-  edit: boolean = false;
-  userlogo=faUser;
-  delete: boolean = false;
-  showbutton = false;
-  togglebutton = false;
-  loggeduser: any = '';
-  role = 'author';
-  loggedUserId: any = '';
-  authorId: any = '';
-  writer: any = '';
-  liked: boolean = false;
-  faEllipsis = faEllipsisVertical;
-  faThumbsup = faThumbsUp;
-  fasolidThumb = fasolidThumb;
-  faComment = faCommentDots;
-  faxmark=faXmark;
-  showComments = false;
-  showLikedUser=false;
-  likes:any;
-  str = '';
-  totalLikes = 0;
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private blogService: BlogserviceService,
-    private router: Router
-  ) {}
+  </div>
 
-  ngOnInit(): void {
-    this.activatedRoute.params.subscribe((data) => {
-      this.blogId = data['id'];
-    });
-    this.blogService.getBlogbyId(this.blogId).subscribe((data) => {
-      this.blogDetails = data;
-      console.log(this.blogDetails);
-      this.writer = this.blogDetails.username;
-      this.authorId = this.blogDetails.authorId;
-      this.likes = this.blogDetails.blog_likes;
-      this.totalLikes = this.likes.length;
-      if (this.blogDetails.imageUrl == '') {
-        this.blogDetails.imageUrl =
-          'https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dGVjaG5vbG9neXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60';
-      }
-      this.loggeduser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-      this.likes.map((like:any) => {
-        if (like.user_id == this.loggeduser._id) {
-          this.liked = true;
-        }
-      });
-
-      if (this.totalLikes == 0) {
-        this.str = '0 Like';
-      } else if (this.liked == true) {
-        this.str = `You and ${this.totalLikes - 1} other liked`;
-      } else {
-        this.str = `${this.totalLikes} liked`;
-      }
-    
-      if (this.loggeduser != '') {
-        this.loggedUserId = this.loggeduser._id;
-        this.role = this.loggeduser.role;
-      }
-
-      if (this.role == 'admin') {
-        this.showbutton = true;
-        this.delete = true;
-      }
-      if (this.loggedUserId == this.authorId) {
-        console.log('can be deleted');
-        this.showbutton = true;
-        this.delete = true;
-        this.edit = true;
-      }
-    });
-  }
-  toggleIcon(str: string) {
-    if (str == 'ellipsis') this.togglebutton = !this.togglebutton;
-    else if (str == 'thumb') {
-      this.liked = !this.liked;
-      this.blogService
-        .addNremoveLike(this.blogId, this.blogDetails)
-        .subscribe((response) => {
-          alert(response);
-          this.blogService.getBlogbyId(this.blogId).subscribe((data) => {
-            this.blogDetails = data;
-            this.likes = this.blogDetails.blog_likes;
-            this.totalLikes = this.likes.length;
-
-            if (this.totalLikes == 0) {
-              this.str = '0 Like';
-            } else if (this.liked == true) {
-              this.str = `You and ${this.totalLikes - 1} other liked`;
-            } else {
-              this.str = `${this.totalLikes} liked`;
-  }
-          });
-        });
-    } else this.showComments = !this.showComments;
-  }
-  toggleThumb() {}
-  deleteblog(id: any) {
-    console.log(id);
-    this.blogService.deleteblog(id).subscribe((response) => {
-      console.log(response);
-      this.router.navigateByUrl('/blog/blogs');
-    });
-  }
-  updateblog(id: string) {
-    this.router.navigateByUrl(`/blog/blogs/edit/${id}`);
-  }
-  toggleshowLikes(){
-     this.showLikedUser=!this.showLikedUser; 
-  }
-  showuser(userinfo:any)
-  { 
-  
-    this.router.navigateByUrl('user/'+userinfo.user_id)
-  }
-}
+</div>
+<div *ngIf="showLikedUser" class="likesContainer">
+  <div class="xicon" >
+    <div class="xiconChild" (click)="toggleshowLikes()">
+      <fa-icon [icon]=faxmark ></fa-icon>
+    </div>
+  </div>
+  <div *ngFor="let user of likes">
+    <div class="likedUser" (click)="showuser(user)">
+      <fa-icon [icon]="userlogo" ></fa-icon>
+      {{ user.username }}
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
