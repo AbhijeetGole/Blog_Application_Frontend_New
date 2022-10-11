@@ -1,3 +1,7 @@
+# Technical Blog Application
+[Backend Repo link](https://github.com/AbhijeetGole/Blog_Applicaiton_Backend)
+
+Install the node modules using the command npm i for running the frontend.
 # Learn
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.2.
