@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {}
 
   loggedin() {
-    this.loggedinUser = localStorage.getItem('token');
+    this.loggedinUser = localStorage.getItem('username');
     this.userData = localStorage.getItem('currentUser');
     this.userData = JSON.parse(this.userData);
     if (this.userData && this.userData.role == 'admin') 
@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit {
 
   onLogout() {
     localStorage.removeItem('currentUser');
-    localStorage.removeItem('token');
+    localStorage.removeItem('username');
     this.toast.success({ detail: 'Logged out Successfully', duration: 2000 });
   }
 }

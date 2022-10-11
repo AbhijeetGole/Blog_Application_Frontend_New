@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap, mapTo} from 'rxjs/operators';
-import { environment } from '../../../environments/environment';
 import { User } from '../models/user';
 import { Observable } from 'rxjs';
 import jwt_decode from 'jwt-decode';
+import { environment } from '../../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:6001/user/technical-blogging/user';
+  private apiUrl = environment.UserApi;
 
   redirectUrl: string | undefined;
   

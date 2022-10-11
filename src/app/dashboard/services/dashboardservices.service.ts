@@ -1,11 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardservicesService {
-  BASE_URL : string  = "http://localhost:6001/technical-blogging/usergetbyId/"
+  BASE_URL : string  = environment.UserIdApi
   constructor(private http: HttpClient) { }
 
   httpOptions = {
